@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="top">
-      <img src='../../assets/back.png' alt class="p1">
+      <img src='../../assets/back.png' alt class="p1" @click="back()">
       <div class="a1">
         <p>{{datas.cityName}}</p>
         <router-link style="color:white;" to="/allcity">切换城市</router-link>
@@ -155,6 +155,9 @@ export default {
        }
        console.log(this.show1);
        console.log(this.names)
+   },
+   back(){
+     this.$router.back();
    }
    
   }
@@ -176,7 +179,8 @@ export default {
 .p1 {
   position: absolute;
   left: 0.1rem;
-  top: 0;
+  top: 0.1rem;
+  width: 0.18rem;
 }
 .a1 {
   position: absolute;
