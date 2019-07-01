@@ -42,7 +42,7 @@
         <p style="color:gray;">热门城市</p>
       </div>
       <div id="remen">
-        <p v-for="(v,i) in csArr" :key="i" class="rmcs">
+        <p v-for="(v,i) in csArr" :key="i" class="rmcs" @click="chuangsong(v)">
           <router-link :to="'/test4?city_id='+v.id+'&cityName='+v.name">{{v.name}}</router-link>
         </p>
       </div>
@@ -50,7 +50,7 @@
     <!-- 所有城市 -->
     <div id="suoyou">
       <ul>
-        <li v-for="(value,key) in syArr" :key="key">
+        <li v-for="(value,key) in syArr" :key="key" @click="chuangsong(value)">
           <p class="tc"></p>
           <p id="a">
             {{key}}
@@ -89,6 +89,12 @@ export default {
     }
   },
   methods: {
+    chuangsong(v){
+      console.log(v)
+      // this.$store.commit('getmingzi',v);
+      this.$store.commit('dedaojindu',v);
+      this.$store.commit('dedaoweidu',v);
+    },
     //获取定位的地址
     getName() {
       const api = "https://elm.cangdu.org/v1/cities?type=guess";
@@ -98,7 +104,8 @@ export default {
       }).then(res => {
         this.name = res.data.name;
         this.id = res.data.id;
-        console.log(res.data)
+        // console.log(res.data)
+        // this.chuangsong(res.data)
       });
     },
     // 热门城市

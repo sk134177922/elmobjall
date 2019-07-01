@@ -60,7 +60,7 @@ export default {
   background-color: #fff;
   font-size: 0.18rem;
   position: fixed;
-  bottom: 0;
+  bottom: 0.6rem;
 }
 #x img {
   width: 0.2rem;

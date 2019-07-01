@@ -1,7 +1,7 @@
 <template>
     <div>
           <div class="top">
-               <img src="../../assets/zuojiantou.png" alt="" class="zuojiantou" @click="back()">
+               <img src="../../assets/zuojiantou.png" alt="" class="zuojiantou" @click="gotodetial()">
                <span>{{name}}</span>
           </div>
           <p class="datu">
@@ -34,16 +34,38 @@
                     好评率{{manyidu}}%
                </span>
           </p>
-         <!-- <div class="bottomgowu">
-               <div>
-                    <img src="../../assets/gouwuche.png" alt="">
-               </div>
-               <div>
-                   <p>￥80</p>
-                   <p>配送费5元</p>
-               </div>
-               <div>去结算</div>
-          </div> -->
+         <!-- 购物车 -->
+        <div class="bottomgowu">
+               <div class="gou00">
+                <!-- <p>{{(goumoney).toFixed(2)}}</p> -->
+                <p>{{(this.$store.state.totalprice).toFixed(2)}}</p>
+                <!-- <p>配送费￥{{shopdata.float_delivery_fee}}</p> -->
+                <p>配送费￥5</p>
+            </div>
+            <div class="haicha">
+                <p class="classp1" v-if="this.$store.state.totalprice<20">还差￥20起送</p>
+                <p class="classp2" v-if="this.$store.state.totalprice>=20">请结算</p>
+            </div>
+            <img src="../../assets/gouwuche.png" v-if="this.$store.state.totalprice<20" class="goshop" @click="clall">
+            <img src="../../assets/gouwuche.png" v-else class="goshopblue" @click="clall">
+            <div class="countnum" v-if="num">{{num}}</div>
+            <!-- <div v-if="gounum" class="countnum">{{gounum}}</div> -->
+            </div>
+            <!-- 点击购物车时显示的 -->
+            <div class="cargo" v-if="shopping && sk1.length>0">
+                <p v-if="sk1.length>0 && shopping" class="pshop1"><span>购物车</span><span @click="clearall(sk1)" class="clearall">清空</span></p>
+                <div class="cargoline" v-for="(y,z) in sk1" :key="z">
+                <div><span>{{y.name}}</span></div>
+                <div>
+                    <span v-if="y.specfoods.length==1 ">￥{{y.specfoods[0].price}}</span>
+                    <span v-if="y.specfoods.length>1 & elsesee">￥{{y.specfoods[0].price}}</span>
+                    <span v-if="y.specfoods.length>1 & ifsee">￥{{y.specfoods[1].price}}</span>
+                    </div>
+                <span class="jiangou" @click.stop="dejian(y._id)">-</span>
+                <span class="reduceadd">{{y.is_featured}}</span>
+                <span class="jiagou" @click.stop="adjia(y._id)">+</span>
+                </div>
+                </div>
     
     </div>
 </template>
@@ -58,7 +80,12 @@ export default {
             xiaosou:1,
             pinglunshu:1,
             manyidu:1,
-            tudizhi:''
+            tudizhi:'',
+            shopping:false,
+            elsesee: true,
+            ifsee: false,
+            classB: "ccb",
+            classA: "cca",
 
         }
     },
@@ -73,16 +100,69 @@ export default {
           this.manyidu=this.$route.query.haoping;
           this.tudizhi=this.$route.query.tupian;
     },
+     computed: {
+          // 购物车显示数量
+        num() {
+        var a = 0;
+        for (var i = 0; i < this.$store.state.obj.length; i++) {
+            for (var k = 0; k < this.$store.state.obj[i].foods.length; k++) {
+            a += this.$store.state.obj[i].foods[k].is_featured;
+            }
+        }
+        return a;
+        },
+        //显示总价
+        zongjiage(){
+            return this.$store.state.totalprice
+        },
+        //显示购物车
+         //点击购物车时显示所有订单
+        sk1(){
+            var ak=[];
+            for (let i = 0; i <  this.$store.state.obj.length; i++) {
+                for (var k = 0; k < this.$store.state.obj[i].foods.length; k++) {
+                    if (this.$store.state.obj[i].foods[k].is_featured>0) {
+                        ak.push(this.$store.state.obj[i].foods[k])
+                    } 
+                }  
+            }
+            return ak;
+        }
+     },
     methods: {
          back(){
              this.$router.back();
-         }
+         },
+         gotodetial(){
+              this.$router.push({
+                   name:'shopdetial'
+              })
+         },
+          //点击购物车时显示所有订单
+        clall(){
+            this.shopping=!this.shopping;
+        },
+        adjia(a){
+        this.$store.commit("goujia",a);
+        },
+        dejian(b){
+        this.$store.commit("goujian",b);
+        },
+        clearall(s){
+        for(var i=0;i<s.length;i++){
+            s[i].is_featured=0;
+        }
+        this.$store.state.totalprice=0;
+        this.shopping=false;
+        this.chaqian=20;
+        }
+
     },
 }
 </script>
 <style scoped>
  div{
-        background-color: #fff;
+        /* background-color: #fff; */
     }
      .top{
           width: 3.75rem;
@@ -163,7 +243,7 @@ export default {
      .bottomgowu>div:nth-child(1){
          display: inline-block;
           width: 18%;
-          background-color: blue;
+          /* background-color: blue; */
           border-radius: 50%;
           margin: -2% 0 0 4%; 
      }
@@ -186,4 +266,166 @@ export default {
          color: white;
          text-align: center;
      }
+/* 购物车样式 */
+    .bottomgowu{
+    width: 100%;
+    height:  0.7rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(66, 65, 70);
+    z-index: 10;
+    }
+    .goshop {
+    width: 10%;
+    background-color: rgb(66, 65, 70);
+    border-radius: 50%;
+    border: 0.05rem solid gray;
+    padding: 0.05rem;
+    position: absolute;
+    top: -0.15rem;
+    left: 0.1rem;
+    }
+
+    .goshopblue {
+    width: 10%;
+    background-color: rgb(49, 143, 231);
+    border-radius: 50%;
+    border: 0.05rem solid gray;
+    padding: 0.05rem;
+    position: absolute;
+    top: -0.15rem;
+    left: 0.1rem;
+    }
+    .bottomgowu > div {
+    float: left;
+    }
+    .gou00 {
+    width: 70%;
+    margin-left:0.3rem;
+    position: fixed;
+    left: 1rem; 
+    }
+    .gou00 > p {
+    /* margin-left: 30%; */
+    color: white;
+    }
+    .gou00 > p:nth-child(1) {
+    margin-top: 0.15rem;
+    font-size: 0.2rem;
+    }
+    .gou00 > p:nth-child(2) {
+    font-size: 0.12rem;
+    }
+    .haicha {
+    width: 20%;
+    height:  0.7rem;
+    background-color: rgb(80, 81, 83);
+    /* background-color: red; */
+    font-size: 0.14rem;
+    color: white;
+    text-align: center;
+    line-height:  0.7rem;
+    /* float: right; */
+    margin-left:2rem; 
+    }
+    .classp1{
+    background-color: rgb(80, 81, 83);
+    }
+    .classp2{
+    background-color: rgb(75,218,100);
+    }
+    .countnum {
+    width: 0.25rem;
+    height: 0.25rem;
+    /* padding: 0.03rem; */
+    position: absolute;
+    line-height: 0.25rem;
+    text-align: center;
+    top: -0.2rem;
+    left: 0.5rem;
+    font-size: 0.2rem;
+    background-color: red;
+    border-radius: 50%;
+    }
+    /* 点击后显示的购物车样式 */
+    .cargo{
+    width: 100%;
+    max-height: 2.8rem;
+    position: fixed;
+    left: 0;
+    bottom:0.7rem; 
+    overflow-y: scroll;
+    z-index: 8;
+    background-color:white;
+    }
+    .cargoline{
+    width: 100%;
+    height: 0.35rem;
+    /* background-color: yellow; */
+    }
+    .cargoline>div{
+    float: left;
+    height: 0.35rem;
+    }
+    .cargoline>div:nth-child(1){
+    width:65%;
+    line-height: 0.35rem;
+    font-size: 0.16rem;
+    font-weight: bold;
+    background-color: #fff;
+    }
+    .cargoline>div:nth-child(2){
+    width: 15%;
+    font-size: 0.16rem;
+    /* border: 1px solid red; */
+    color: red;
+    font-weight: bold;
+    box-sizing: border-box;
+    /* background-color:yellow; */
+    line-height: 0.35rem;
+    }
+    .cargoline>div:nth-child(3){
+    width: 20%;
+    background-color: lightblue;
+    line-height: 0.35rem;
+    }
+    .jiangou {
+    /* margin-right: 0.05rem; */
+    border-radius: 50%;
+    font-size: 0.15rem;
+    padding: 0.05rem;
+    padding-left: 0.08rem;
+    padding-right: 0.08rem;
+    display: block;
+    margin-right: 0.05rem;
+    float: left;
+    color: white;
+    margin-top: 0.05rem;
+    background-color: rgb(49, 143, 231);
+    }
+    .jiagou {
+    border-radius: 50%;
+    padding: 0.05rem;
+    display: block;
+    font-size: 0.15rem;
+    margin-right: 0.05rem;
+    margin-top: 0.05rem;
+    float: right;
+    color: white;
+    background-color: rgb(49, 143, 231);
+    }
+    .reduceadd{
+    line-height: 0.35rem;
+    }
+    .pshop1{
+    height: 0.35rem;
+    line-height: 0.35rem;
+    background-color: rgb(239,239,239);
+    }
+    .pshop1 span:nth-child(2){
+    float: right;
+    margin-right: 0.1rem;
+    }
+
 </style>

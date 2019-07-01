@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="top">
-      <img src='../../assets/back.png' alt class="p1">
+      <img src='../../assets/back.png' alt class="p1" @click="back">
       <div class="a1">
         <p>{{datas.cityName}}</p>
         <router-link style="color:white;" to="/allcity">切换城市</router-link>
@@ -15,7 +15,7 @@
     <!-- 相关地址 -->
     <div id="relative">
       <ul id="ul1">
-        <li class="li1" @click="addss(v.name,v.address,v.geohash,v.longitude,v.latitude)" style=" text-align:left" :key="i" v-for="(v,i) in arr">
+        <li class="li1" @click="addss(v.name,v.address,v.geohash,v.longitude,v.latitude,v)" style=" text-align:left" :key="i" v-for="(v,i) in arr">
           <router-link tag="p"  v-model="address" :to="'/waimai?Name='+v.name+'&weidu='+v.latitude+'&jingdu='+v.longitude+'&geohash='+v.geohash">
             {{v.name}}
             <br>
@@ -93,8 +93,11 @@ export default {
       });
     
     },
+    back(){
+      this.$router.back();
+    },
     
-    addss(a,b,c,d,e){
+    addss(a,b,c,d,e,v){
         if(localStorage.name){
             if(localStorage.name.indexOf(a)==-1){
                 localStorage.name += ","+a;
@@ -114,6 +117,8 @@ export default {
             
         }
         console.log(c);
+        console.log(v);
+        this.$store.commit('getmingzi',v)
     },
     addhi(){
         if(localStorage.name){

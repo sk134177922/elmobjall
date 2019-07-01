@@ -32,6 +32,9 @@
         <!-- </router-link> -->
       </li>
     </ul>
+    <!-- <ul id="showone">
+      <li :key="i" v-for="(v,i) in contents">{{v}}</li>
+    </ul> -->
   </div>
 </template>
 <script>
@@ -44,7 +47,8 @@ export default {
     return {
       content: "",
       datas: [],
-      geohash: ""
+      geohash: "",
+      contents:[]
     };
   },
   created() {
@@ -55,7 +59,7 @@ export default {
     SS() {
       const api =
         "https://elm.cangdu.org/v4/restaurants?geohash=" +
-        this.$store.state.jinweidu +
+        this.$store.state.mingzi.geohash +
         "&keyword=" +
         this.content;
       this.$http({
@@ -75,6 +79,18 @@ export default {
           shopL.style.display = "inline-block";
           so.style.display = "none";
         }
+        //存储本地
+        //  if (localStorage.content) {
+        //    if(localStorage.content.indexOf(this.content)==-1){
+        //         localStorage.content += ","+this.content;
+        //      }
+        //  }else{
+        //     localStorage.content =  this.content;
+        //  }
+        // if(localStorage.content){
+        // this.contents = localStorage.content.split(",");
+        // }  
+        // console.log(this.contents.length);
       });
     },
     back() {
@@ -194,5 +210,10 @@ export default {
   background-color: #fff;
   border-top: 1px solid rgb(175, 175, 175);
   display: none;
+}
+/* 历史记录样式 */
+#showone{
+  margin-top:2rem; 
+  margin-left:0.6rem;
 }
 </style>

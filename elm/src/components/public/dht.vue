@@ -10,7 +10,7 @@
             <router-link to="/sousuo">
             <img :src="sousuosrc" alt="" @click="change2()">
             </router-link>
-            <router-link to="/dingdan">
+            <router-link to="/dd">
             <img :src="dingdansrc" alt="" @click="change3()">
             </router-link>
             <router-link to="/myself">
@@ -24,10 +24,10 @@ export default {
     name:'dht',
     data() {
         return {
-            waimaisrc:require("../../assets/SSS.png"),
+            waimaisrc:require("../../assets/SSS1.png"),
             sousuosrc:require("../../assets/zhinanzhen.png"),
             dingdansrc:require("../../assets/dingdan1.png"),
-            touxiangsrc:require("../../assets/touxiang1.png"),
+            touxiangsrc:require("../../assets/touxiang2.png"),
             show:'true'
         }
     },

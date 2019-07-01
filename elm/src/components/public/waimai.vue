@@ -6,7 +6,12 @@
         <router-link :to="'/sousuo?geohash='+geohash">
           <img :src="sousuo" alt>
         </router-link>
-        <p>{{name}}</p>
+        <!-- <router-link :to="'/sosuo?geohash='+geohash+'&show=true'"> -->
+        <!-- <router-link :to="'/sosuo?show=true'">
+          <img :src="sousuo" alt>
+        </router-link> -->
+        <!-- <p>{{name}}</p> -->
+        <p @click="gotocity">{{dedaoall.name}}</p>
         <!-- <router-link to="/login" style="color:#fff;">登录|注册</router-link> -->
         <router-link to="/login" class="w" v-if='xiantouxiang' style="color:#fff;">登陆|注册</router-link>
           <router-link to="/myself" class="w" v-else>
@@ -126,6 +131,10 @@ export default {
     xiantouxiang(){
       console.log(this.$store.state.dl)
       return this.$store.state.dl
+    },
+    dedaoall(){
+      console.log(this.$store.state.mingzi)
+      return this.$store.state.mingzi
     }
   },
   methods: {
@@ -133,6 +142,11 @@ export default {
       this.datas = this.$route.query;
       this.latitude = this.$route.query.weidu;
       this.longitude = this.$route.query.jingdu;
+    },
+    gotocity(){
+      this.$router.push({
+        name:'allcity'
+      })
     },
     getnear() {
       const api =
@@ -160,9 +174,16 @@ export default {
       console.log(v);
     },
     getName() {
-      this.name = this.$route.query.Name;
-      this.geohash = this.$route.query.geohash
-        // console.log(this.$route.query.geohash);
+      if (this.$store.state.mingzi.name) {
+        this.name = this.$store.state.mingzi.name;
+      }else{
+        this.name = this.$route.query.Name;
+      }
+      if (this.$store.state.mingzi.geohash) {
+         this.geohash = this.$store.state.mingzi.geohash
+      }else{
+        this.geohash = this.$route.query.geohash
+      }
     },
     // 轮播图
     getLunBo() {
@@ -230,6 +251,7 @@ export default {
   border: 0.025rem solid #f1f1f1;
   color: #999;
   float: right;
+  font-size: 0.1rem;
   display: inline-block;
 }
 .pingjia {

@@ -22,6 +22,10 @@ export default {
    length:"3",
    datail:"",
    //记录是否登录
-   dl:true
-   
+   dl:true,
+   //长江修改的
+   mingzi:{},
+   latitude:'',
+   longitude:'',
+   xianshishenm:true
 }

@@ -71,28 +71,38 @@ export default {
       },
       // 心彦部分
       getlogin(state,a){
-        this.state.loginac = a
+        this.state.loginac = a;
       },
       getuserid(state,a){
-        this.state.userid = a
+        this.state.userid = a;
       },
       getlength(state,a){
-        this.state.length = a
+        this.state.length = a;
       },
       getdetail(state,a){
-          this.state.detail = a
+          this.state.detail = a;
       },
       getgeohash(state,a){
-        this.state.geohash = a
+        this.state.geohash = a;
       },
       getaddress(state,a){
-          this.state.address = a
+          this.state.address = a;
       },
       getcityid(state,a){
-          this.state.cityid = a
+          this.state.cityid = a;
       },
       // 修改登录标志
       xiugaidl(state,v){
-        this.state.dl=v
+        this.state.dl=v;
+      },
+      //长江修改
+      getmingzi(state,v){
+        this.state.mingzi=v;
+      },
+      dedaojindu(state,v){
+        this.state.latitude=v.latitude;
+      },
+      dedaoweidu(state,v){
+        this.state.longitude=v.longitude;
       }
 }

@@ -32,6 +32,7 @@ import shdz from '../components/L/shdz'
 import sList from '../components/L/sList'
 import xlzg from '../components/L/xlzg'
 import xzdz from '../components/L/xzdz'
+import dd from '../components/L/dd'
 //心彦的部分配置
 import Success from '@/components/public/success'
 import Myinfor from '@/components/public/myinfor'
@@ -59,6 +60,7 @@ import Vipexchange from '@/components/public/vipexchange'
 import Kaifapiao from '@/components/public/kaifapiao'
 import Addaddress from '@/components/public/addaddress'
 import Searchaddress from '@/components/public/searchaddress'
+import Sosuo from '@/components/public/sosuo'
 
 Vue.use(Router)
 
@@ -206,6 +208,16 @@ export default new Router({
           component: Dingdan
         },
         {
+          path: '/dd',
+          name: 'dd',
+          component: dd
+        },
+        {
+          path: '/shdz',
+          name: 'shdz',
+          component: shdz
+        },
+        {
           path: '/myself',
           name: 'myself',
           component: Myself
@@ -214,6 +226,11 @@ export default new Router({
           path: '/sousuo',
           name: 'sousuo',
           component: Sousuo
+        },
+        {
+          path: '/sosuo',
+          name: 'sosuo',
+          component: Sosuo
         }
       ]
     },

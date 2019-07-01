@@ -514,6 +514,7 @@ export default {
     bottom: 0;
     left: 0;
     background-color: rgb(66, 65, 70);
+    z-index: 10;
     }
     .goshop {
     width: 10%;
@@ -590,7 +591,7 @@ export default {
     left: 0;
     bottom:0.7rem; 
     overflow-y: scroll;
-    z-index: 20;
+    z-index: 7;
     background-color:white;
     }
     .cargoline{
