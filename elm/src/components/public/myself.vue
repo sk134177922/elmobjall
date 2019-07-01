@@ -91,8 +91,10 @@ export default {
         //  }
          this.name = this.$store.state.loginac;
          this.check1();
-         this.getlegth();
+         if(this.show == true){
+             this.getlegth();
          this.length = this.$store.state.length;
+         }
         //  this.getlegth();
          
         // if(this.img1 == this.img1){
