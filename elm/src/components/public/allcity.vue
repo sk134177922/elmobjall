@@ -58,7 +58,7 @@
           </p>
           <ul id="na">
             <li :key="i" v-for="(v,i) in value" class="n">
-              <router-link :to="'/test4?city_id='+v.id+'&cityName='+v.name">{{v.name}}</router-link>
+              <router-link :to="'/test4?city_id='+v.id+'&cityName='+v.name" style="color:gray;">{{v.name}}</router-link>
             </li>
           </ul>
         </li>
