@@ -138,13 +138,13 @@ export default {
     position: absolute;
     width: 0.5rem;
     height: 0.35rem;
-    border-bottom: 2px solid blue;
+    border-bottom: 2px solid rgb(49, 144, 232);
     text-align: center;
     line-height: 0.35rem;
     top: 0.05rem;
     left: 0.6rem;
     font-size: 0.18rem;
-    color: blue;
+    color: rgb(49, 144, 232);
 }
 #center>span:nth-child(2){
     position: absolute;

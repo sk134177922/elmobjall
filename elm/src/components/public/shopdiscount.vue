@@ -96,8 +96,8 @@ export default {
     top: 0.05rem;
     right: 0.6rem;
     font-size: 0.18rem;
-     color: blue;
-      border-bottom: 2px solid blue;
+     color: rgb(49, 144, 232);
+      border-bottom: 2px solid rgb(49, 144, 232);
 }
 #titleimg{
     width: 0.21rem;
