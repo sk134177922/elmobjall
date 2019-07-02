@@ -10,12 +10,14 @@
             <div id="center">
                <div id="centerleft">
                  <p id="cp1">在线客服</p>
-                    <img id="cimg1" src="../../assets/kefu.png" alt="">
+                    <img @click="sure1()" id="cimg1" src="../../assets/kefu.png" alt="">
                </div>
                 
                 <div id="centerright">
-                    <p id="cp2">在线客服</p>
+                   <a href="tel:13566119956">
+                        <p id="cp2">在线客服</p>
                     <img id="cimg2" src="../../assets/dianhua.png" alt="">
+                   </a>
                 </div>
 
             </div>
@@ -139,6 +141,11 @@
                 <img id="rimg1" src="../../assets/right.png" alt="">
             </div>
 
+            <div class="animated heartBeat 2s" v-if="show1" id="div1">
+                <img id="divimg" src="../../assets/未标题-1.png" alt="">
+                <span id="divspan">请在手机APP中设置</span>
+                <span @click="sure22()" id="divspan1">确认</span>
+            </div>
     </div>
 </template>
 <script>
@@ -147,12 +154,19 @@ export default {
     data(){
         return {
          explain:"",
+         show1:false,
         }
     },
     created() {
         this.getproblem();
     },
     methods:{
+        sure1(){
+            this.show1 = true
+        },
+        sure22(){
+            this.show1 = false
+        },
         back(){
             this.$router.go(-1);
         },
@@ -502,5 +516,43 @@ export default {
     top: 0.2rem;
     right: 0.1rem;
 
+}
+#div1{
+    position: absolute;
+    top: 1.7rem;
+    left: 0.45rem;
+    width: 2.8rem;
+    height: 1.7rem;
+    background-color: white;
+     border-top-right-radius: 0.05rem;
+    border-top-left-radius: 0.05rem;
+}
+#divimg{
+    width: 0.8rem;
+    position: absolute;
+    top: 0.08rem;
+    left: 1rem;
+}
+#divspan{
+    display: inline-block;
+    width: 2.5rem;
+    position: absolute;
+    top: 1rem;
+    left: 0.69rem;
+    font-size: 0.16rem;
+}
+#divspan1{
+    display: inline-block;
+    background-color: rgb(79, 217, 100);
+    color: white;
+    font-size: 0.18rem;
+    line-height: 0.45rem;
+    width: 2.8rem;
+    position: absolute;
+    top: 1.5rem;
+    height: 0.45rem;
+    text-align: center;
+    border-bottom-right-radius: 0.05rem;
+    border-bottom-left-radius: 0.05rem;
 }
 </style>
