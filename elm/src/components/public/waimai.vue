@@ -75,13 +75,15 @@
                 class="xingji"
               ></el-rate>
               <span>月售:{{value.rating_count}}单</span>
+              <span style="float:right">
               <span>{{value.delivery_mode.text}}</span>
               <span>{{value.supports[1].name}}</span>
+              </span>
             </p>
 
             <p class="qisong">
               ￥{{value.float_minimum_order_amount}}起送/{{value.piecewise_agent_fee.tips}}
-              <span>
+              <span class="zuiyou">
                 <span class="distance">{{value.distance}}/</span>
                 <span>{{value.order_lead_time}}</span>
               </span>
@@ -91,6 +93,21 @@
         </li>
       </ul>
     </div>
+     <!-- 导航条 -->
+         <div id="bottom_bottom">
+            <router-link to="/waimai">
+            <img :src="waimaisrc" alt="" >
+            </router-link>
+            <router-link to="/sousuo">
+            <img :src="sousuosrc" alt="" >
+            </router-link>
+            <router-link to="/dd">
+            <img :src="dingdansrc" alt="" >
+            </router-link>
+            <router-link to="/myself">
+            <img :src="touxiangsrc" alt="" >
+            </router-link>
+        </div>
   </div>
 </template>
 <script>
@@ -114,7 +131,11 @@ export default {
         pagination: {
           el: ".swiper-pagination"
         }
-      }
+      },
+       waimaisrc:require("../../assets/SSS1.png"),
+      sousuosrc:require("../../assets/zhinanzhen.png"),
+      dingdansrc:require("../../assets/dingdan1.png"),
+      touxiangsrc:require("../../assets/touxiang2.png"),
 
     };
   },
@@ -255,14 +276,14 @@ export default {
   display: inline-block;
 }
 .pingjia {
-  font-size: 0.03rem;
+  font-size: 0.1rem;
 }
 .pingpai {
   background-color: #ffd930;
 }
 .qisong {
   margin-top: 0.07rem;
-  font-size: 0.02rem;
+  font-size: 0.1rem;
 }
 .distance {
   margin-left: 0.2rem;
@@ -308,5 +329,22 @@ export default {
 .lunbo1 img {
   width: 0.5rem;
 }
-
+/* 导航条 */
+#bottom_bottom{
+    width: 3.75rem;
+    padding: 0.1rem 0;
+    position:fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+}
+#bottom_bottom img{
+    width: 0.3rem;
+}
+.zuiyou{
+  float: right;
+}
 </style>

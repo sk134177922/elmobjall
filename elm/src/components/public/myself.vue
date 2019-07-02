@@ -64,7 +64,21 @@
                 <img id="bimg2"  src="../../assets/iconfontjiantou2.png" alt="">
             </div>
         </div>
-        
+        <!-- 导航条 -->
+         <div id="bottom_bottom">
+            <router-link to="/waimai">
+            <img :src="waimaisrc" alt="" >
+            </router-link>
+            <router-link to="/sousuo">
+            <img :src="sousuosrc" alt="" >
+            </router-link>
+            <router-link to="/dd">
+            <img :src="dingdansrc" alt="" >
+            </router-link>
+            <router-link to="/myself">
+            <img :src="touxiangsrc" alt="" >
+            </router-link>
+        </div>
     </div>
 </template>
 <script>
@@ -79,6 +93,10 @@ export default {
             show:false,
             length:"3",
             show1:true,
+            waimaisrc:require("../../assets/SSS.png"),
+            sousuosrc:require("../../assets/zhinanzhen.png"),
+            dingdansrc:require("../../assets/dingdan1.png"),
+            touxiangsrc:require("../../assets/touxiang1.png"),
         }
     },
     // beforeMount(){
@@ -416,5 +434,20 @@ export default {
     position: absolute;
     top: 0.93rem;
     left: 0.9rem;
+}
+/* 导航条 */
+#bottom_bottom{
+    width: 3.75rem;
+    padding: 0.1rem 0;
+    position:fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+}
+#bottom_bottom img{
+    width: 0.3rem;
 }
 </style>

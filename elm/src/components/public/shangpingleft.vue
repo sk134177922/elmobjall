@@ -132,7 +132,7 @@ export default {
             classA: "cca",
             selfprice:0,
             SV:1,
-            shopping:false
+            shopping:false,
         }
     },
     created() {
@@ -226,6 +226,7 @@ export default {
                    console.log(this.datas);
                    this.show = true;
                    this.$store.commit('spspshuju',res.data);
+                   
             })
         },
         //跳转到foods页面
