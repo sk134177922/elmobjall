@@ -3,7 +3,8 @@
         <div>
             <router-view></router-view>
         </div>
-        <div id="bottom">
+        <!-- 导航条 -->
+        <!-- <div id="bottom_bottom">
             <router-link to="/waimai">
             <img :src="waimaisrc" alt=""  @click="change1()">
             </router-link>
@@ -16,7 +17,7 @@
             <router-link to="/myself">
             <img :src="touxiangsrc" alt="" @click="change4()">
             </router-link>
-        </div>
+        </div> -->
     </div>
 </template>
 <script>
@@ -60,7 +61,7 @@ export default {
 }
 </script>
 <style scoped>
-#bottom{
+#bottom_bottom{
     width: 3.75rem;
     padding: 0.1rem 0;
     position:fixed;
@@ -71,7 +72,7 @@ export default {
     align-items: center;
     background-color: #fff;
 }
-#bottom img{
+#bottom_bottom img{
     width: 0.3rem;
 }
 </style>

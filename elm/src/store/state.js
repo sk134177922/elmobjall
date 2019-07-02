@@ -27,5 +27,6 @@ export default {
    mingzi:{},
    latitude:'',
    longitude:'',
-   xianshishenm:true
+   xianshishenm:true,
+   zxcc:{}
 }

@@ -112,13 +112,33 @@
         <p id="qrxd">确认下单</p>
       </div>
     </div>
+      <!-- 导航条 -->
+         <div id="bottom_bottom">
+            <router-link to="/waimai">
+            <img :src="waimaisrc" alt="" >
+            </router-link>
+            <router-link to="/sousuo">
+            <img :src="sousuosrc" alt="" >
+            </router-link>
+            <router-link to="/dd">
+            <img :src="dingdansrc" alt="" >
+            </router-link>
+            <router-link to="/myself">
+            <img :src="touxiangsrc" alt="" >
+            </router-link>
+        </div>
   </div>
 </template>
 <script>
 export default {
   name: "dd",
   data() {
-    return {};
+    return {
+      waimaisrc:require("../../assets/SSS.png"),
+      sousuosrc:require("../../assets/zhinanzhen.png"),
+      dingdansrc:require("../../assets/dingdan2.png"),
+      touxiangsrc:require("../../assets/touxiang2.png"),
+    };
   },
   created() {},
   methods: {
@@ -393,6 +413,7 @@ export default {
   background-color: rgb(60, 60, 60);
   position: fixed;
   bottom: 0;
+  /* z-index: 10; */
 }
 #dzfC{
   width: 90%;
@@ -408,5 +429,20 @@ export default {
   text-align: center;
   line-height: 0.5rem;
   background-color: rgb(86, 209, 118);
+}
+/* 导航条 */
+#bottom_bottom{
+    width: 3.75rem;
+    padding: 0.1rem 0;
+    position:fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+}
+#bottom_bottom img{
+    width: 0.3rem;
 }
 </style>

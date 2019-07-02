@@ -104,5 +104,8 @@ export default {
       },
       dedaoweidu(state,v){
         this.state.longitude=v.longitude;
+      },
+      svk(state,v){
+        this.state.zxcc=v;
       }
 }
