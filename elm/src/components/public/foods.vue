@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="background-color:#fff;padding-bottom:0.8rem;">
           <div class="top">
                <img src="../../assets/zuojiantou.png" alt="" class="zuojiantou" @click="gotodetial()">
                <span>{{name}}</span>
@@ -35,16 +35,16 @@
                </span>
           </p>
          <!-- 购物车 -->
-        <div class="bottomgowu">
-               <div class="gou00">
+        <div class="bottomgowu" id="gwc">
+               <div class="gou00" id="ps">
                 <!-- <p>{{(goumoney).toFixed(2)}}</p> -->
                 <p>{{(this.$store.state.totalprice).toFixed(2)}}</p>
                 <!-- <p>配送费￥{{shopdata.float_delivery_fee}}</p> -->
                 <p>配送费￥5</p>
             </div>
-            <div class="haicha">
+            <div class="haicha" id="js">
                 <p class="classp1" v-if="this.$store.state.totalprice<20">还差￥20起送</p>
-                <p class="classp2" v-if="this.$store.state.totalprice>=20">请结算</p>
+                <p class="classp2" id="p2" v-if="this.$store.state.totalprice>=20">去结算</p>
             </div>
             <img src="../../assets/gouwuche.png" v-if="this.$store.state.totalprice<20" class="goshop" @click="clall">
             <img src="../../assets/gouwuche.png" v-else class="goshopblue" @click="clall">
@@ -166,16 +166,18 @@ export default {
     }
      .top{
           width: 3.75rem;
+          height: 0.5rem;
           background-color: #3190e8;
           position: relative;
           top: 0;
           left: 0;
           color: white;
           font-size: 0.2rem;
+          display: flex;
+          align-items: center;
      }
      .zuojiantou{
-          width: 0.5rem;
-          /* border: 1px solid red */
+          width: 0.3rem;
      }
      .top>span{
           /* display: inline-block; */
@@ -198,7 +200,8 @@ export default {
           margin-top: 0.1rem;
           background-color: #fff;
           color: #666;
-          padding-left:0.1rem ;
+          padding: 0.05rem 0 0.05rem 0.1rem;
+          font-size: 0.15rem;
      }
      .fname{
           margin-top:0.2rem;
@@ -238,7 +241,7 @@ export default {
           bottom: 0;
           left: 0;
           background-color: #555;
-          height: 0.7rem;
+          height: 0.5rem;
      }
      .bottomgowu>div:nth-child(1){
          display: inline-block;
@@ -318,8 +321,8 @@ export default {
     font-size: 0.12rem;
     }
     .haicha {
-    width: 20%;
-    height:  0.7rem;
+    width: 10%;
+    /* height:  0.5rem; */
     background-color: rgb(80, 81, 83);
     /* background-color: red; */
     font-size: 0.14rem;
@@ -427,5 +430,26 @@ export default {
     float: right;
     margin-right: 0.1rem;
     }
-
+#gwc{
+     height: 0.5rem;
+}
+#js{
+     width: 30%;
+     position: absolute;
+     right: 0;
+     line-height: 0.5rem;
+     font-size: 0.15rem;
+}
+#ps{
+     line-height: 1.3em;
+     position: absolute;
+     left: 0.7rem;
+}
+#ps p{
+     font-weight: bold;
+}
+#p2{
+     font-weight: bold;
+     font-size: 0.17rem;
+}
 </style>
