@@ -80,8 +80,8 @@
     <div id="zhezhaoceng" v-if="showAllfoods"></div>
     <!-- 弹出框 -->
     <div id="xuanguige" v-if="showAllfoods">
-      <p id="Fname">{{kobj.name}}</p>
-      <p v-if="kobj.specfoods" id="Fguige">{{kobj.specfoods[0].name}}</p>
+      <p id="Fname" class="hover">{{kobj.name}}</p>
+      <p v-if="kobj.specfoods" id="Fguige" class="hover">{{kobj.specfoods[0].name}}</p>
       <span
         class="Fguige1"
         v-for="(fv,fi) in kobj.specfoods"
@@ -697,5 +697,9 @@ export default {
 .pshop1 span:nth-child(2) {
   float: right;
   margin-right: 0.1rem;
+}
+.Fguige1:hover{
+    border: 1px solid #3199e8;
+    color: #3199e8;
 }
 </style>

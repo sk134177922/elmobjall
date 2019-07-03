@@ -248,6 +248,7 @@ export default {
   float: left;
   width: 3.75rem;
   border-bottom: 1px solid lightgray;
+  background-color: #fff;
 }
 .shop_img {
   width: 0.7rem;

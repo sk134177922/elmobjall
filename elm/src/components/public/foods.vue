@@ -161,9 +161,6 @@ export default {
 }
 </script>
 <style scoped>
- div{
-        /* background-color: #fff; */
-    }
      .top{
           width: 3.75rem;
           height: 0.5rem;
