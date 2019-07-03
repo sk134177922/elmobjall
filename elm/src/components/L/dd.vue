@@ -4,7 +4,11 @@
       <div id="topCenter">
         <img src="../../assets/back.png" alt @click="back()">
         <span style="font-weight:bold;">确认订单</span>
-        <router-link to="/login" style="color:#fff;">登录|注册</router-link>
+        <!-- <router-link to="/login" style="color:#fff;">登录|注册</router-link> -->
+        <router-link to="/login" class="w" v-if='xiantouxiang' style="color:#fff;">登陆|注册</router-link>
+          <router-link to="/myself" class="w" v-else>
+           <img src="../../assets/touxiang2.png" alt  id='txall' >
+          </router-link>
       </div>
     </div>
     <!-- 收货地址 -->
@@ -139,6 +143,12 @@ export default {
       dingdansrc:require("../../assets/dingdan2.png"),
       touxiangsrc:require("../../assets/touxiang2.png"),
     };
+  },
+  computed: {
+    xiantouxiang(){
+      console.log(this.$store.state.dl)
+      return this.$store.state.dl
+    },
   },
   created() {},
   methods: {

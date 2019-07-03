@@ -100,10 +100,10 @@ export default {
         this.state.mingzi=v;
       },
       dedaojindu(state,v){
-        this.state.latitude=v.latitude;
+        this.state.longitude=v.longitude;
       },
       dedaoweidu(state,v){
-        this.state.longitude=v.longitude;
+        this.state.latitude=v.latitude;
       },
       svk(state,v){
         this.state.zxcc=v;

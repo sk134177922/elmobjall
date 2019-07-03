@@ -120,6 +120,8 @@ export default {
         console.log(c);
         console.log(v);
         this.$store.commit('getmingzi',v)
+        this.$store.commit('dedaojindu',v.longitude);
+        this.$store.commit('dedaoweidu',v.latitude)
     },
     addhi(){
         if(localStorage.name){

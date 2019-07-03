@@ -6,13 +6,7 @@
         <router-link :to="'/sousuo?geohash='+geohash">
           <img :src="sousuo" alt>
         </router-link>
-        <!-- <router-link :to="'/sosuo?geohash='+geohash+'&show=true'"> -->
-        <!-- <router-link :to="'/sosuo?show=true'">
-          <img :src="sousuo" alt>
-        </router-link> -->
-        <!-- <p>{{name}}</p> -->
         <p @click="gotocity">{{dedaoall.name}}</p>
-        <!-- <router-link to="/login" style="color:#fff;">登录|注册</router-link> -->
         <router-link to="/login" class="w" v-if='xiantouxiang' style="color:#fff;">登陆|注册</router-link>
           <router-link to="/myself" class="w" v-else>
            <img src="../../assets/touxiang2.png" alt  id='txall' >
@@ -46,13 +40,13 @@
     </div>
     </div>
     <div id="fenge"></div>
-    <div id="bottom">
+    <div id="bottom" >
       <p id="near">
         <span class="el-icon-office-building"></span>
         <span>附近商家</span>
       </p>
       <!-- <button @click="getlast()">尝试</button> -->
-      <ul>
+      <ul  id="xiask"  @scroll="yidong1()">
         <li :key="i" v-for="(value,i) in content" class="shop_li" @click="sentAllcon(value)">
           <!-- <router-link :to="'/shopdetial?shopId='+value.id"> -->
           <img :src="'https://elm.cangdu.org/img/'+value.image_path" alt class="shop_img">
@@ -65,7 +59,7 @@
 
               <span class="zhunshida" :key="i" v-for="(v,i) in value.supports">{{v.icon_name}}</span>
             </p>
-            <p class="pingjia">
+            <div class="pingjia">
               <el-rate
                 v-model="value.rating"
                 disabled
@@ -74,18 +68,22 @@
                 score-template="{value}"
                 class="xingji"
               ></el-rate>
-              <span>月售:{{value.rating_count}}单</span>
-              <span style="float:right">
-              <span>{{value.delivery_mode.text}}</span>
-              <span>{{value.supports[1].name}}</span>
+              <p style="margin-top:0.08rem;width:100%"> 
+                <span >月售:{{value.rating_count}}单</span>
+                
+              <span style="float:right" >
+                 
+              <span v-if="value.delivery_mode" style="backgroundColor:#57A9FF;color:white">{{value.delivery_mode.text}}</span>
+              <span v-if="value.supports.length>1" style="border:1px solid #59A9FF;color:#57A9FF">{{value.supports[1].name}}</span>
               </span>
-            </p>
+              </p>
+            </div>
 
             <p class="qisong">
               ￥{{value.float_minimum_order_amount}}起送/{{value.piecewise_agent_fee.tips}}
               <span class="zuiyou">
                 <span class="distance">{{value.distance}}/</span>
-                <span>{{value.order_lead_time}}</span>
+                <span style="color:#59A9FF">{{value.order_lead_time}}</span>
               </span>
             </p>
           </div>
@@ -126,6 +124,8 @@ export default {
       name: "",
       geohash:"",
       arrs: [],
+      x1:0,
+      y1:0,
       sousuo: require("../../assets/fangdajing.png"),
       swiperOption: {
         pagination: {
@@ -136,6 +136,7 @@ export default {
       sousuosrc:require("../../assets/zhinanzhen.png"),
       dingdansrc:require("../../assets/dingdan1.png"),
       touxiangsrc:require("../../assets/touxiang2.png"),
+      numall:20
 
     };
   },
@@ -159,6 +160,17 @@ export default {
     }
   },
   methods: {
+    // 加载更多
+    yidong1() {
+      var con = document.getElementById("xiask");
+      // console.log(1);
+      if (con.scrollTop + con.clientHeight + 50 >= con.scrollHeight) {
+        this.numall = this.numall + 10;
+        // this.x1 = parseFloat(this.x1) + 0.1;
+        // this.y1 = parseFloat(this.y1) + 0.1;
+        this.getnear();
+      }
+    },
     getlast() {
       this.datas = this.$route.query;
       this.latitude = this.$route.query.weidu;
@@ -174,7 +186,7 @@ export default {
         "https://elm.cangdu.org/shopping/restaurants?latitude=" +
         this.latitude +
         "&longitude=" +
-        this.longitude;
+        this.longitude+'&limit='+this.numall;
       this.$http({
         url: api,
         method: "get"
@@ -221,6 +233,9 @@ export default {
 };
 </script>
 <style scoped>
+::-webkit-scrollbar {
+    display: none;
+    }
 /* 头像css */
 #txall{
   width:0.3rem;
@@ -266,23 +281,26 @@ export default {
   font-size: 0.1rem;
 }
 .infor {
-  width: 2.55rem;
+  width: 2.65rem;
+  font-size: 0.15rem;
 }
 .zhunshida {
-  border: 0.025rem solid #f1f1f1;
+  border: 1px solid gainsboro;
   color: #999;
   float: right;
   font-size: 0.1rem;
   display: inline-block;
+  margin: 0 1px;
 }
 .pingjia {
   font-size: 0.1rem;
+  margin: 0.17rem 0;
 }
 .pingpai {
   background-color: #ffd930;
 }
 .qisong {
-  margin-top: 0.07rem;
+  margin-top: 0.08rem;
   font-size: 0.1rem;
 }
 .distance {
@@ -346,5 +364,10 @@ export default {
 }
 .zuiyou{
   float: right;
+}
+#xiask{
+  /* overflow: hidden; */
+  height: 50vh;
+  overflow-y: scroll;
 }
 </style>

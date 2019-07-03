@@ -67,6 +67,8 @@
   </div>
 </template>
 <script>
+import { Loading } from "element-ui";
+let loadingInstance;
 export default {
   name: "allcity",
   data() {
@@ -120,6 +122,7 @@ export default {
     },
     // 获取所有城市
     getSuoyou() {
+      loadingInstance = Loading.service({});
       const api = "https://elm.cangdu.org/v1/cities?type=group";
       this.$http({
         url: api,
@@ -136,6 +139,7 @@ export default {
         for (var i = 0; i < arr.length; i++) {
           this.$set(this.syArr, arr[i], res.data[arr[i]]);
         }
+        loadingInstance.close();
       });
     }
   }

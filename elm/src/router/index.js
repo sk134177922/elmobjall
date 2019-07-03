@@ -60,7 +60,7 @@ import Vipexchange from '@/components/public/vipexchange'
 import Kaifapiao from '@/components/public/kaifapiao'
 import Addaddress from '@/components/public/addaddress'
 import Searchaddress from '@/components/public/searchaddress'
-import Sosuo from '@/components/public/sosuo'
+import testsou from '@/components/public/testsou'
 
 Vue.use(Router)
 
@@ -228,9 +228,9 @@ export default new Router({
           component: Sousuo
         },
         {
-          path: '/sosuo',
-          name: 'sosuo',
-          component: Sosuo
+          path: '/testsou',
+          name: 'testsou',
+          component: testsou
         }
       ]
     },

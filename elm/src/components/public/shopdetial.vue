@@ -4,6 +4,7 @@
     <div id="topandmiddle">
       <div class="allcon">
         <div v-if="show" class="top">
+          <img :src="'https://elm.cangdu.org/img/'+datas.image_path" alt="" style="width:3.75rem;height:3.3rem;filter: blur(10px);opacity:0.8">
           <span class="el-icon-arrow-left jiantouleft" @click="back()"></span>
           <img :src="'https://elm.cangdu.org/img/'+datas.image_path" alt class="imgInfor">
           <div class="top_right">
@@ -26,10 +27,10 @@
         <!-- 商品/评价按钮 -->
         <div class="middle">
           <div class="middle_left">
-              <span @click="goshangping(shopId)">商品</span>
+              <span @click="goshangping(shopId)" class="spleft">商品</span>
           </div>
           <div class="middle_right">
-              <span @click="gopingjia(shopId)">评价</span>
+              <span @click="gopingjia(shopId)" class="pjright">评价</span>
           </div>
         </div>
       </div>
@@ -53,33 +54,6 @@
         <img src="../../assets/quxiao.png" alt style="width:1rem;height:1rem;" @click="addSome">
       </p>
     </div>
-     <!-- 购物车
-        <div class="bottomgowu1">
-               <div>
-                    <img src="../../assets/gouwuche.png" alt="" @click="showAll()">
-               </div>
-               <div>
-                   <p>￥{{Ac}}</p>
-                   <p>配送费5元</p>
-                   <p>{{Af.length}}</p>
-               </div>
-               <div  @click="dedaofoodArr()">去结算</div>
-        </div> -->
-        <!-- <div class="dingdanNum" v-if="showcount">
-              <p>
-                <span>购物车</span>
-                <span @click="deleteAll()">清空</span>
-              </p>
-              <ul>
-                <li :key="Ai" v-for="(AA,Ai) in Af">
-                  <p>
-                    <span>{{AA.someB}}</span>
-                    <span>{{AA.someA}}</span>
-                    <span>{{1}}</span>
-                  </p>
-                </li>
-              </ul>
-        </div> -->
   </div>
 </template>
 <script>
@@ -147,6 +121,12 @@ export default {
       this.getshopId();
       console.log(this.shopId);
       this.$store.commit("getClickid", v);
+      var shangPl =document.getElementsByClassName('spleft')
+      shangPl[0].style.color='blue';
+      shangPl[0].style.borderBottom='2px solid blue'
+       var pjrig =document.getElementsByClassName('pjright');
+       pjrig[0].style.color='black';
+      pjrig[0].style.borderBottom=''
          this.$router.push({
           name:'shangpingleft'
         })
@@ -159,6 +139,12 @@ export default {
         this.$router.push({
           name:'canguanpingjia'
         })
+        var shangPl =document.getElementsByClassName('spleft')
+      shangPl[0].style.color='black';
+      shangPl[0].style.borderBottom=''
+       var pjrig =document.getElementsByClassName('pjright');
+       pjrig[0].style.color='blue';
+      pjrig[0].style.borderBottom='2px solid blue'
     },
     goToshangjiaAll() {
       this.$router.push({
@@ -203,11 +189,12 @@ export default {
   left: 0;
 }
 .top {
-  color: gray;
+  color: white;
   font-size: 0.1rem;
   height: 1.2rem;
-  background-color: white;
+  background-color: lightgray;
   position: relative;
+  overflow: hidden;
 }
 .top_right {
   width: 2.7rem;
@@ -244,7 +231,7 @@ export default {
 }
 .shopName {
   font-size: 0.2rem;
-  color: gray;
+  color: white;
   margin-bottom: 0.1rem;
 }
 .gonggao {
@@ -252,7 +239,7 @@ export default {
 }
 .red {
   background-color: red;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   margin-left: 0.2rem;
 }
 .huodongto {
@@ -332,5 +319,9 @@ export default {
        left: 0;
        background-color: #fff;
        width: 3.75rem;
+     }
+     .spleft{
+       color: blue;
+       /* border-bottom:2px solid blue;  */
      }
 </style>

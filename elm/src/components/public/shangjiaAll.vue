@@ -9,21 +9,21 @@
        </div>
        <div class="juan">
            <p>
-               <span>{{data1.activities[0].icon_name}}</span>
+               <span style="border:1px solid red">{{data1.activities[0].icon_name}}</span>
                <span>{{data1.activities[0].description}}</span>
             </p>
            <p>
-               <span> {{data1.supports[0].icon_name}}</span>
+               <span style="border:1px solid blue"> {{data1.supports[0].icon_name}}</span>
                <span>
                    {{data1.supports[0].description}}(APP专享)
                </span>
            </p>
             <p>
-                <span>{{data1.supports[1].icon_name}}</span>
+                <span style="border:1px solid green">{{data1.supports[1].icon_name}}</span>
                 <span>{{data1.supports[1].description}}(APP专享)</span>
             </p>
             <p>
-                <span>{{data1.supports[2].icon_name}}</span>
+                <span style="border:1px solid yellow">{{data1.supports[2].icon_name}}</span>
                 <span>{{data1.supports[2].description}}(APP专享)</span>
             </p>
        </div>

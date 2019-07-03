@@ -37,6 +37,7 @@
                                  <span>好评率{{v.satisfy_rate}}%</span>
                                 </p>
                             </h6>
+                            <div class="ball"></div>
                             </div>
                             <span v-if="v.activity"  style="border:1px solid rgb(240,115,115);border-radius:0.05rem;fontSize:0.1rem;color:rgb(241,136,79)">{{v.activity.image_text}}</span>
                             <p class="xPrice">
@@ -47,7 +48,7 @@
                             <span v-else class="selectfoods1" >
                                <span v-if="v.is_featured>0" @click.stop="delle(i2,i3)" class="jianhao">-</span>
                                <span v-if="v.is_featured>0">{{v.is_featured}}</span>
-                               <span @click.stop="addd(i2,i3)" class="jiahao">+</span>
+                               <span @click.stop="addd(i2,i3,$event)" class="jiahao">+</span>
                             </span>
                             </p>
                              </div>
@@ -79,7 +80,7 @@
             </div>
             <div class="haicha">
                 <p class="classp1" v-if="this.$store.state.totalprice<20">还差￥20起送</p>
-                <p class="classp2" v-if="this.$store.state.totalprice>=20">请结算</p>
+                <p class="classp2" v-if="this.$store.state.totalprice>=20" @click="tojiesuan()">请结算</p>
             </div>
             <img src="../../assets/gouwuche.png" v-if="this.$store.state.totalprice<20" class="goshop" @click="clall">
             <img src="../../assets/gouwuche.png" v-else class="goshopblue" @click="clall">
@@ -105,6 +106,8 @@
     <!-- </div> -->
 </template>
 <script>
+import { Loading } from "element-ui";
+let loadingInstance;
 export default {
     name:'shangpingleft',
     data() {
@@ -136,7 +139,9 @@ export default {
         }
     },
     created() {
-        this.getHotpaipu();    
+        this.getHotpaipu(); 
+        
+         
     },
     computed: {
         obj() {
@@ -184,6 +189,12 @@ export default {
         }
     },
     methods: {
+        //去结算
+        tojiesuan(){
+            this.$router.push({
+                name:'dd'
+            })
+        },
         //弹出购物车
         tanchuguige(v,price1) {
         this.kobj = v;
@@ -215,6 +226,7 @@ export default {
         },
         //本页面数据请求
         getHotpaipu(){
+            loadingInstance = Loading.service({});
             console.log(this.$store.state.clickShopid)
             this.clickId=this.$store.state.clickShopid;
             const api ='https://elm.cangdu.org/shopping/v2/menu?restaurant_id='+this.$store.state.shopID;
@@ -226,6 +238,8 @@ export default {
                    console.log(this.datas);
                    this.show = true;
                    this.$store.commit('spspshuju',res.data);
+                loadingInstance.close(); 
+                    
                    
             })
         },
@@ -245,12 +259,24 @@ export default {
             })
         },
         //点击+时传下标
-        addd(a, b) {
+        addd(a, b,evt) {
         this.$store.commit("getindex", {
             a: a,
             b: b
         });
         //   this.chaqian=this.shopdata.float_minimum_order_amount-this.$store.state.totalprice;
+        var jiahaoObj = document.getElementsByClassName("jiahao");
+        var $ball = document.getElementsByClassName("ball");
+        // document.body.onclick = function(evt) {
+        // console.log(evt.pageX, evt.pageY);
+        $ball[b].style.top = evt.pageY + "px";
+        $ball[b].style.left = evt.pageX + "px";
+        $ball[b].style.transition = "left 0s, top 0s";
+        setTimeout(() => {
+        $ball[b].style.top = window.innerHeight + "px";
+        $ball[b].style.left = "0px";
+        $ball[b].style.transition = "left 1s linear, top 1s ease-in";
+        }, 20);
         },
         //点击-时的
         delle(a, b) {
@@ -284,12 +310,28 @@ export default {
 }
 </script>
 <style scoped>
+    /* 动画 */
+    * {
+    margin: 0;
+    padding: 0;
+    }
+    .ball {
+    width: 20px;
+    height: 20px;
+    background: rgb(49, 143, 231);
+    border-radius: 50%;
+    position: fixed;
+    transition: left 1s linear, top 1s ease-in;
+    z-index: 10;
+    left: -1rem;
+    top:0;
+    }
     .leftXS{
         background-color: #ff461d;
         width: 0.2rem;
         height: 0.2rem;
         font-size: 0.2rem;
-        position: relative;
+        position: absolute;
         line-height: 0.2rem;
         text-align: center;
         top: 0;
@@ -332,6 +374,7 @@ export default {
         overflow: hidden;
         text-overflow:ellipsis;
         white-space: nowrap;
+        position: relative;
     }
     .allfoodsImg{
         width: 1rem;

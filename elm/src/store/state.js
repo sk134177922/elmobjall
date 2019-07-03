@@ -25,8 +25,8 @@ export default {
    dl:true,
    //长江修改的
    mingzi:{},
-   latitude:'',
-   longitude:'',
+   latitude:{},
+   longitude:{},
    xianshishenm:true,
    zxcc:{}
 }
