@@ -7,8 +7,8 @@
       </div>
     </div>
     <!-- 新增收货地址 -->
-    <div id="xz">
-      <router-link to="/xzdz" id="x">
+    <div id="xz" @click="a()">
+      <router-link to id="x">
         <img src="../../assets/jia.png" alt>
         <span style="margin-left:0.1rem;color: #3190e8;">新增收货地址</span>
       </router-link>
@@ -25,6 +25,12 @@ export default {
   methods: {
     back() {
       this.$router.back();
+    },
+    a(){
+      alert("再点怼死你");
+      for(var i=1;i<=999;i++){
+        alert("你已经死"+i+"次了");
+      }
     }
   }
 };
@@ -60,7 +66,7 @@ export default {
   background-color: #fff;
   font-size: 0.18rem;
   position: fixed;
-  bottom: 0.6rem;
+  bottom: 0;
 }
 #x img {
   width: 0.2rem;

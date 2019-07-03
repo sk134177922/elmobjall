@@ -30,7 +30,7 @@
     <div id="dw">
       <router-link :to="'/test4?city_id='+id+'&cityName='+name" id="dingwei">
       <!-- :to="'/city?cityName='+citys.name+'&city_id=' +citys.id" -->
-        <p>{{name}}</p>
+        <p style="font-size:0.2rem;">{{name}}</p>
         <p>
           <img src="../../assets/right.png" alt id="right">
         </p>
@@ -43,7 +43,7 @@
       </div>
       <div id="remen">
         <p v-for="(v,i) in csArr" :key="i" class="rmcs" @click="chuangsong(v)">
-          <router-link :to="'/test4?city_id='+v.id+'&cityName='+v.name">{{v.name}}</router-link>
+          <router-link :to="'/test4?city_id='+v.id+'&cityName='+v.name" style="color:#5882fa;font-size:0.15rem;">{{v.name}}</router-link>
         </p>
       </div>
     </div>

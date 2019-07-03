@@ -57,6 +57,8 @@
   </div>
 </template>
 <script>
+import { Loading } from "element-ui";
+let loadingInstance;
 export default {
   name: "shopdetial",
   data() {
@@ -78,7 +80,8 @@ export default {
     // this.Ac();
     //  console.log(this.zongPrice)
     console.log(this.$route.query)
-    
+    loadingInstance = Loading.service({});
+    loadingInstance.close();
   },
   computed: {
       Ac(){

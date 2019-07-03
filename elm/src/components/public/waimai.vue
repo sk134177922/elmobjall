@@ -146,7 +146,7 @@ export default {
     this.getName();
     this.getLunBo();
     loadingInstance = Loading.service({});
-    loadingInstance.close();
+    
      console.log(this.$route.query);
   },
    computed: {
@@ -195,6 +195,7 @@ export default {
         console.log(this.content);
         // this.shopId=this.content[1].id;
         // console.log(this.shopId)
+        loadingInstance.close();
       });
     },
     sentAllcon(v) {
@@ -263,6 +264,7 @@ export default {
   float: left;
   width: 3.75rem;
   border-bottom: 1px solid lightgray;
+  background-color: #fff;
 }
 .shop_img {
   width: 0.7rem;

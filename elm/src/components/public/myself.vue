@@ -101,7 +101,7 @@ export default {
     },
     // beforeMount(){
         
-    // },
+    // }, 
     created() {
         this.getSrc();
         //  if(this.$store.state.imgavatar != ""){
@@ -109,10 +109,10 @@ export default {
         //  }
          this.name = this.$store.state.loginac;
          this.check1();
-         if(this.show == true){
+        //  if(this.show == true){
              this.getlegth();
          this.length = this.$store.state.length;
-         }
+        //  }
         //  this.getlegth();
          
         // if(this.img1 == this.img1){
