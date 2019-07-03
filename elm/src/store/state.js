@@ -19,7 +19,7 @@ export default {
    geohash:"",
    address:"",
    cityid:"",
-   length:"3",
+   length:"0",
    datail:"",
    //记录是否登录
    dl:true,
