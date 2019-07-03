@@ -25,7 +25,7 @@
                 <p id="centerp11">我的余额</p>
             </div>
             <div @click="discount()" id="centertwo">
-                <p id="centerp2">{{length}}</p>
+                <p id="centerp2">{{this.$store.state.length}}</p>
                 <p id="centerp23">个</p>
                 <p id="centerp22">我的优惠</p>
             </div>
@@ -113,7 +113,7 @@ export default {
          this.check1();
         //  if(this.show == true){
              this.getlegth();
-         this.length = this.$store.state.length;
+        //  this.length = this.$store.state.length;
         //  }
         //  this.getlegth();
          

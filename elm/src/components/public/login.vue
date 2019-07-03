@@ -79,9 +79,10 @@ export default {
             }).then(res=>{
                 console.log("login数据");
                 console.log(res);
-                console.log(res.data.user_id);
+                // console.log(res.data.user_id);
                  this.$store.commit("getlogin",this.username);
                  this.$store.commit("getuserid",res.data.user_id);
+                
                 if (res.data.message) {
                     alert(res.data.message);//登陆失败
                 } else {
@@ -99,6 +100,7 @@ export default {
         back(){
             this.$router.go(-1);
         },
+        
     }
 }
 </script>
