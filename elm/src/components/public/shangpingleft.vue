@@ -104,7 +104,7 @@
       </div>
       <div class="haicha">
         <p class="classp1" v-if="this.$store.state.totalprice<20">还差￥20起送</p>
-        <p class="classp2" v-if="this.$store.state.totalprice>=20">去结算</p>
+        <p class="classp2" v-if="this.$store.state.totalprice>=20" @click="gotodd()">去结算</p>
       </div>
       <img
         src="../../assets/gouwuche.png"
@@ -222,6 +222,11 @@ export default {
     }
   },
   methods: {
+    gotodd(){
+      this.$router.push({
+        name:'dd'
+      })
+    },
     //弹出购物车
     tanchuguige(v, price1) {
       this.kobj = v;
