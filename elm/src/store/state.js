@@ -28,5 +28,6 @@ export default {
    latitude:{},
    longitude:{},
    xianshishenm:true,
-   zxcc:{}
+   zxcc:{},
+   cunchudizhi:[]
 }
