@@ -109,7 +109,16 @@ export default {
     this.state.zxcc = v;
   },
   cundizhia(state, v) {
-    this.state.cunchudizhi.push(v)
+    if (this.state.cunchudizhi.length == 0) {
+      this.state.cunchudizhi.unshift(v);
+    } else {
+      for (var i = 0; i < this.state.cunchudizhi.length; i++) {
+        if (this.state.cunchudizhi.indexOf(v) == -1) {
+          this.state.cunchudizhi.unshift(v);
+        }
+      }
+    }
+
   },
   shanchuli(state, v) {
     this.state.cunchudizhi.splice(v, 1);
