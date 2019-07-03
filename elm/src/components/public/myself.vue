@@ -35,7 +35,7 @@
         </div>
 
         <div id="content">
-            <div id="contentone">
+            <div id="contentone" @click="content()">
                 <img id="cimg" src="../../assets/shangdian.png" alt="">
                 <span id="span1">我的订单</span>
                 <img id="timg1"  src="../../assets/iconfontjiantou2.png" alt="">
@@ -122,6 +122,11 @@ export default {
     },
     
     methods:{
+        content(){
+            this.$router.push({
+                name:"dd"
+            })
+        },
         abc(){
             if(this.show == true){
                 this.$router.push({
