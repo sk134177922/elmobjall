@@ -73,7 +73,9 @@ export default {
             this.show=!this.show
         },
         back(){
-            this.$router.back();
+            this.$router.push({
+                name:'shopdetial'
+            });
         },
         toAnauan(){
             this.$router.push({
