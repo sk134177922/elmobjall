@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div id="varz">
         <div id="top">
             <div id="topone">
                 <img @click="back()" src="../../assets/back.png" alt="">
@@ -78,6 +79,7 @@
             <router-link to="/myself">
             <img :src="touxiangsrc" alt="" >
             </router-link>
+        </div>
         </div>
     </div>
 </template>
@@ -220,9 +222,17 @@ export default {
 }
 </script>
 <style scoped>
+::-webkit-scrollbar {
+  display: none;
+}
+#varz{
+    height: 5.5rem;
+    overflow-y: scroll;
+}
 #top{
     width: 3.75rem;
     /* height: 1.3rem; */
+    position: relative;
 }
 #topone{
     width: 3.75rem;
