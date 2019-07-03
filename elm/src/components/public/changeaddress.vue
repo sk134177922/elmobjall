@@ -9,9 +9,9 @@
 
    <ul id="ul1"  :key="i" v-for="(v,i) in arr1">
      <li id="li1">
-       <p id="p1">{{v.phone}}</p>
+       <p id="p1">{{v.name}}</p>
        <p v-if="show1" @click="del(i)" id="pp1">✖</p>
-       <p id="p2">{{v.phone_bk}}</p>
+       <p id="p2">{{v.phone}}</p>
      </li>
    </ul>
 
@@ -106,6 +106,7 @@ export default {
   height: 0.5rem;
   background-color: papayawhip;
   position: relative;
+  margin-bottom: 0.03rem;
 }
 #address{
   margin-top: 0.15rem;
