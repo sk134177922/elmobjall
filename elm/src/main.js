@@ -18,6 +18,10 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 Vue.use(VueAwesomeSwiper)
 
+
+import { Rate } from 'vant';
+Vue.use(Rate);
+
 /* eslint-disable no-new */
 new Vue({
   store,

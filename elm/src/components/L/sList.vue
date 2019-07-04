@@ -11,14 +11,20 @@
           </p>
           <p class="line2">
             <span>
-              <el-rate
+              <!-- <el-rate
                 v-model="v.rating"
                 disabled
                 show-score
                 text-color="#ff9900"
                 score-template="{value}"
                 class="ping"
-              ></el-rate>
+              ></el-rate> -->
+              <van-rate
+  v-model="value"
+  allow-half
+  void-icon="star"
+  void-color="#eee"
+/>
             </span>
             <span class="ys">月售{{v.recent_order_num}}单</span>
             <span class="zs">{{v.delivery_mode.text}}</span>
@@ -39,7 +45,8 @@ export default {
   data() {
     return {
       shopList: [],
-      supports: []
+      supports: [],
+      value: 3
     };
   },
   created() {
