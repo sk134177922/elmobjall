@@ -175,7 +175,7 @@ export default {
             })
         },
         discount(){
-            if(this.length == 0){
+            if(this.$store.state.length == 0){
                 this.$store.commit("getlength",0);
               this.$store.commit("getdetail","");
                 this.$router.push({

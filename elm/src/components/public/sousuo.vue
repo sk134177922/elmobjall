@@ -40,7 +40,7 @@
     </ul>
     <p id="a">搜索历史</p>
     <ul id="bc" v-show="pan">
-      <li v-for="(v,i) in acd" :key="i" class="his" @click="dian(v)"><span>{{v}}</span><span @click="x(i,v)">X</span></li>
+      <li v-for="(v,i) in acd" :key="i" class="his" @click="dian(v)"><span>{{v}}</span><span @click.stop="x(i,v)">X</span></li>
     </ul>
     <p id="q" @click="q()" style="display:inline-black;">清空搜索历史</p>
     <!-- 导航条 -->
